@@ -21,11 +21,18 @@ z2 = 3;
 z3 = 6;
 z4 = 200;
 
-difference() {
-    quarterHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z4);
-    // cylinder(h=4, r=5, center=true, $n=100);
-    sphere(r =14);
-}
+quarterHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z4);
+
+// // for test if polyhedron is properly build or not 1
+// difference() {
+// 	translate([0,0,1]) cylinder (h = 250, r=20, center = false, $fn=100);
+//     quarterHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z4);
+// }
+// // for test if polyhedron is properly build or not 2
+// difference() {
+//    quarterHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z4);
+// 	translate([0,0,1]) cylinder (h = 250, r=10, center = false, $fn=100);
+// }
 
 module handle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z4)
     union(){
@@ -50,14 +57,11 @@ module quarterHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z4) {
         [0,0,z4],[xl3,0,z4],[xl3,ys3,z4],[xs3,yl3,z4],[0,yl3,z4]  // points 20 to 24 for flat planes (top side)
     ],
     faces=[
-        [1,6,7,2],[2,7,8,3],[3,8,9,4],
-        [1+5,6+5,7+5,2+5],[2+5,7+5,8+5,3+5],[3+5,8+5,9+5,4+5],
+        [1,   6,   7,   2   ],[2,   7,   8,   3   ],[3,   8,   9,   4   ],
+        [1+ 5,6+ 5,7+ 5,2+ 5],[2+ 5,7+ 5,8+ 5,3+ 5],[3+ 5,8+ 5,9+ 5,4+ 5],
         [1+10,6+10,7+10,2+10],[2+10,7+10,8+10,3+10],[3+10,8+10,9+10,4+10],
         [1+15,6+15,7+15,2+15],[2+15,7+15,8+15,3+15],[3+15,8+15,9+15,4+15],
-         // 3 flat(long) planes
         [0,20,21,16,11,6,1],[0,4,9,14,19,24,20], // 2 inside planes (to be hidden later), bottom side
-        // [20,21,22,23,24],                     // top face
-        // [0,4,3,2,1],                     // bottom face
         [20,24,23,22,21],// top face
         [0,1,2,3,4]// bottom face
      ]
