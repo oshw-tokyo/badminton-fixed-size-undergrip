@@ -21,7 +21,7 @@ z2 = 3;
 z3 = 6;
 z4 = 200;
 
-quarterHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z4);
+// quarterHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z4);
 
 // // for test if polyhedron is properly build or not 1
 // difference() {
@@ -34,23 +34,23 @@ quarterHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z4);
 // 	translate([0,0,1]) cylinder (h = 250, r=10, center = false, $fn=100);
 // }
 
-module handle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z4)
+module handle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z0,z1,z2,z3,z4)
     union(){
-        halfHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z4);
-        mirror(v=[0,1,0]) halfHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z4);
+        halfHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z0,z1,z2,z3,z4);
+        mirror(v=[0,1,0]) halfHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z0,z1,z2,z3,z4);
     }
 
-module halfHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z4)
+module halfHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z0,z1,z2,z3,z4)
     union(){
-        quarterHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z4);
-        mirror(v=[1,0,0]) quarterHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z4);
+        quarterHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z0,z1,z2,z3,z4);
+        mirror(v=[1,0,0]) quarterHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z0,z1,z2,z3,z4);
     }
 
-module quarterHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z4) {
+module quarterHandle(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z0,z1,z2,z3,z4) {
 
     polyhedron(
     points=[
-        [0,0, 0],[xl0,0, 0],[xl0,ys1, 0],[xs0,yl0, 0],[0,yl0, 0],      // points  0 to  4 for small tilted planes at the bottom
+        [0,0,z0],[xl0,0,z0],[xl0,ys1,z0],[xs0,yl0,z0],[0,yl0,z0],      // points  0 to  4 for small tilted planes at the bottom
         [0,0,z1],[xl1,0,z1],[xl1,ys1,z1],[xs1,yl1,z1],[0,yl1,z1], // points  5 to  9 at base flat planes
         [0,0,z2],[xl1,0,z2],[xl1,ys1,z2],[xs1,yl1,z2],[0,yl1,z2], // points 10 to 14 for tilted planes
         [0,0,z3],[xl3,0,z3],[xl3,ys3,z3],[xs3,yl3,z3],[0,yl3,z3], // points 15 to 19 for flat planes (bottom side)
