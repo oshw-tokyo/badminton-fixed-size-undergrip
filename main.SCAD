@@ -1,6 +1,7 @@
 include <handle_v0.SCAD>;
 // include <symple_shell.SCAD>;
 include <round_shell.SCAD>;
+include <cpp_mesh_seed.SCAD>;
 
 
 xs0 = 5;
@@ -29,4 +30,12 @@ z4 = 200;
 t = 1;
 // ts = 1;
 
-RoundShell(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z0,z1,z2,z3,z4,t);
+// cpp_mesh_seed parameters
+lc = 4;
+
+difference(){
+    RoundShell(xs0,xs1,xs3,xl0,xl1,xl3,ys0,ys1,ys3,yl0,yl1,yl3,z0,z1,z2,z3,z4,t);
+    // cpp_mesh_seed(lc, xl1+2, yl1+2, z4);
+}
+
+
